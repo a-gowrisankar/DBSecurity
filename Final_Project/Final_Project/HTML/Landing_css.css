@@ -6,16 +6,17 @@
 	margin: 0px;
 	padding: 0px;
 	overflow-x: hidden;
-	
-	
+
+
 }
 
 #Heading
 {
 	font-size: 60px;
-	font-family: sans-serif;
-	text-align: center; 
-	
+	font-family: Arial, Helvetica, sans-serif;
+	color:#00264d;
+	text-align: center;
+
 }
 
 
@@ -34,6 +35,26 @@
 
 body
 {
-	background-image:url("../Images/bg.jpg");
-	background-size: 100%; 
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-origin: padding-box;
+	font-family: Arial, Helvetica, sans-serif;
+	color:#00264d;
+}
+
+html {
+  background: linear-gradient(to bottom, #ffffe6, #ffeb99);
+	height: 100%;
+}
+
+p.sysnot
+{
+	width: 1450px;
+	border: 1px solid gray;
+	box-shadow: 2px 3px 3px #888;
+	border-top: 2px solid #001a33;
+	min-height: 40px;
+	padding: 10px;
+	margin: 10px;
+	margin-left: 60px;
 }

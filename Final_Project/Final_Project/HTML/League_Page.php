@@ -25,7 +25,7 @@ $userType = $_SESSION['userType'];
 
 
 <div id = "menu">
-	
+
 <hr>
 </div>
 
@@ -34,38 +34,43 @@ $userType = $_SESSION['userType'];
 <ul>
 
 
-`
-<li> <a href = "Logout.php"> Logout</a></li> 
+
+<li> <a href = "Logout.php"> Logout</a></li>
 
 
 <!-- <li> <a href = "../Database/GetParameterValues_Testing.php"> Cron Test</a></li>   -->
 <!-- <li> <a href = "../Database/phpFullScript.php"> Cron Test</a></li>  -->
 
-</ul> 
+</ul>
 
 </div>
 
- 
-<?php 
 
-$username = "ananth";
-$password = "ananth1";
-$hostname = "www.papademas.net:3307"; 
-$db ="fitb";
+<?php
+
+//$username = "ananth";
+//$password = "ananth1";
+//$hostname = "www.papademas.net:3307";
+//$db ="fitb";
+
+$username = "root";
+$password = "root";
+$hostname = "localhost";
+$db ="employees";
 $conn = mysqli_connect($hostname, $username, $password, $db);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-} 
+}
 $email = $_SESSION['useremail'];
 $query=mysqli_query($conn,"SELECT First_Name, LOGIN_TIME, LOGOUT_TIME FROM db_sec_users WHERE email_id='$email';");
-	
-	if (!$query) 
+
+	if (!$query)
 	{
     echo 'Could not run query: ' . mysql_error();
     exit;
 	}
-	
+
 	$row = mysqli_fetch_array($query);
 	if(!$row)
 	{
@@ -79,34 +84,28 @@ $query=mysqli_query($conn,"SELECT First_Name, LOGIN_TIME, LOGOUT_TIME FROM db_se
 	$_SESSION['logTime'] = $loginTime;
 	$_SESSION['logoTime'] = $logoutTime;
 	$_SESSION['fName'] = $uName;
-	
-if ($userType == 'U') 
+  $_SESSION['utype'] = $userType;
+
+if ($userType == 'U')
 {
-	echo 'You have User Priviliges';
-	echo' <br><br>';
-	echo 'Your Last Login Time was';
-	echo $loginTime ;
-	echo' <br><br>';
-	echo'and Last Logout Time was '; 
-	echo $logoutTime ;
+	echo '<script type="text/javascript">; window.open("../Database/Users.php","_self");</script>';
+}
+else if ($userType == 'A')
+{
+	echo '<script type="text/javascript">; window.open("../Database/AdminReports.php","_self");</script>';
 }
 else if ($userType == 'SU')
 {
-	echo 'Hello Super User. You now have super priviliges';
-	echo' <br><br>';
-	echo 'You have User Priviliges';
-	echo' <br><br>';
-	echo 'Your Last Login Time was';
-	echo $loginTime ;
-	echo' <br><br>';
-	echo'and Last Logout Time was '; 
-	echo $logoutTime ;
-} 
-else if ($userType == 'A')	
+	echo '<script type="text/javascript">; window.open("../Database/SuperUser.php","_self");</script>';
+}
+else if ($userType == 'M')
 {
-	
-	echo '<script type="text/javascript">; window.open("../Database/AdminReports.php","_self");</script>';
-} 
+	echo '<script type="text/javascript">; window.open("../Database/Manager.php","_self");</script>';
+}
+else if ($userType == 'HR')
+{
+	echo '<script type="text/javascript">; window.open("../Database/hr.php","_self");</script>';
+}
 else
 {
 	echo "Guest Role";
